@@ -140,6 +140,33 @@ export function GitHubLink({ github: possibleLink }: { github?: string }) {
   );
 }
 
+export function ColabLink({ sourceUrl }: { sourceUrl?: string }) {
+  if (!sourceUrl || !/\.ipynb(?:$|[?#])/.test(sourceUrl)) return null;
+  const colabUrl = sourceUrl.replace(
+    /^https?:\/\/github\.com\//,
+    'https://colab.research.google.com/github/',
+  );
+  if (colabUrl === sourceUrl) return null;
+  return (
+    <a
+      href={colabUrl}
+      title="Open in Colab"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Open notebook in Colab"
+      className="myst-fm-colab-link text-inherit hover:text-inherit"
+    >
+      <img
+        src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%5C%22http://www.w3.org/2000/svg%5C%22%20viewBox%3D%5C%220%200%2024%2024%5C%22%3E%3Cpath%20d%3D%5C%22M4.54%2C9.46%2C2.19%2C7.1a6.93%2C6.93%2C0%2C0%2C0%2C0%2C9.79l2.36-2.36A3.59%2C3.59%2C0%2C0%2C1%2C4.54%2C9.46Z%5C%22%20fill%3D%5C%22%23E8710A%5C%22/%3E%3Cpath%20d%3D%5C%22M2.19%2C7.1%2C4.54%2C9.46a3.59%2C3.59%2C0%2C0%2C1%2C5.08%2C0l1.71-2.93h0l-.1-.08h0A6.93%2C6.93%2C0%2C0%2C0%2C2.19%2C7.1Z%5C%22%20fill%3D%5C%22%23F9AB00%5C%22/%3E%3Cpath%20d%3D%5C%22M11.34%2C17.46h0L9.62%2C14.54a3.59%2C3.59%2C0%2C0%2C1-5.08%2C0L2.19%2C16.9a6.93%2C6.93%2C0%2C0%2C0%2C9%2C.65l.11-.09%5C%22%20fill%3D%5C%22%23F9AB00%5C%22/%3E%3Cpath%20d%3D%5C%22M12%2C7.1a6.93%2C6.93%2C0%2C0%2C0%2C0%2C9.79l2.36-2.36a3.59%2C3.59%2C0%2C1%2C1%2C5.08-5.08L21.81%2C7.1A6.93%2C6.93%2C0%2C0%2C0%2C12%2C7.1Z%5C%22%20fill%3D%5C%22%23F9AB00%5C%22/%3E%3Cpath%20d%3D%5C%22M21.81%2C7.1%2C19.46%2C9.46a3.59%2C3.59%2C0%2C0%2C1-5.08%2C5.08L12%2C16.9A6.93%2C6.93%2C0%2C0%2C0%2C21.81%2C7.1Z%5C%22%20fill%3D%5C%22%23E8710A%5C%22/%3E%3C/svg%3E"
+        alt="Open in Colab"
+        width="20"
+        height="20"
+        className="myst-fm-colab-icon inline-block align-text-bottom"
+      />
+    </a>
+  );
+}
+
 export function OpenAccessBadge({ open_access }: { open_access?: boolean }) {
   if (!open_access) return null;
   return (
@@ -254,6 +281,7 @@ export function FrontmatterBlock({
     authors,
     enumerator,
     edit_url,
+    source_url,
   } = frontmatter;
   const isJupyter = kind === SourceFileKind.Notebook;
   const hasExports = downloads ? downloads.length > 0 : exports && exports.length > 0;
@@ -294,6 +322,7 @@ export function FrontmatterBlock({
               <GitHubLink github={github} />
             </div>
           )}
+          <ColabLink sourceUrl={source_url ?? undefined} />
           <EditLink editUrl={edit_url ?? undefined} />
           {!hideExports && <DownloadsDropdown exports={(downloads ?? exports) as any} />}
           {!hideLaunch && thebe && location && <LaunchButton thebe={thebe} location={location} />}
