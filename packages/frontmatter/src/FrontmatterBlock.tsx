@@ -140,6 +140,39 @@ export function GitHubLink({ github: possibleLink }: { github?: string }) {
   );
 }
 
+function ColabLogo() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      focusable="false"
+      aria-hidden="true"
+      className="myst-fm-colab-icon inline-block h-5 w-5 align-text-bottom"
+    >
+      <path
+        d="M4.54,9.46,2.19,7.1a6.93,6.93,0,0,0,0,9.79l2.36-2.36A3.59,3.59,0,0,1,4.54,9.46Z"
+        fill="#E8710A"
+      />
+      <path
+        d="M2.19,7.1,4.54,9.46a3.59,3.59,0,0,1,5.08,0l1.71-2.93h0l-.1-.08h0A6.93,6.93,0,0,0,2.19,7.1Z"
+        fill="#F9AB00"
+      />
+      <path
+        d="M11.34,17.46h0L9.62,14.54a3.59,3.59,0,0,1-5.08,0L2.19,16.9a6.93,6.93,0,0,0,9,.65l.11-.09"
+        fill="#F9AB00"
+      />
+      <path
+        d="M12,7.1a6.93,6.93,0,0,0,0,9.79l2.36-2.36a3.59,3.59,0,1,1,5.08-5.08L21.81,7.1A6.93,6.93,0,0,0,12,7.1Z"
+        fill="#F9AB00"
+      />
+      <path
+        d="M21.81,7.1,19.46,9.46a3.59,3.59,0,0,1-5.08,5.08L12,16.9A6.93,6.93,0,0,0,21.81,7.1Z"
+        fill="#E8710A"
+      />
+    </svg>
+  );
+}
+
 export function ColabLink({ sourceUrl }: { sourceUrl?: string }) {
   if (!sourceUrl || !/\.ipynb(?:$|[?#])/.test(sourceUrl)) return null;
   const colabUrl = sourceUrl.replace(
@@ -156,13 +189,7 @@ export function ColabLink({ sourceUrl }: { sourceUrl?: string }) {
       aria-label="Open notebook in Colab"
       className="myst-fm-colab-link text-inherit hover:text-inherit"
     >
-      <img
-        src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%5C%22http://www.w3.org/2000/svg%5C%22%20viewBox%3D%5C%220%200%2024%2024%5C%22%3E%3Cpath%20d%3D%5C%22M4.54%2C9.46%2C2.19%2C7.1a6.93%2C6.93%2C0%2C0%2C0%2C0%2C9.79l2.36-2.36A3.59%2C3.59%2C0%2C0%2C1%2C4.54%2C9.46Z%5C%22%20fill%3D%5C%22%23E8710A%5C%22/%3E%3Cpath%20d%3D%5C%22M2.19%2C7.1%2C4.54%2C9.46a3.59%2C3.59%2C0%2C0%2C1%2C5.08%2C0l1.71-2.93h0l-.1-.08h0A6.93%2C6.93%2C0%2C0%2C0%2C2.19%2C7.1Z%5C%22%20fill%3D%5C%22%23F9AB00%5C%22/%3E%3Cpath%20d%3D%5C%22M11.34%2C17.46h0L9.62%2C14.54a3.59%2C3.59%2C0%2C0%2C1-5.08%2C0L2.19%2C16.9a6.93%2C6.93%2C0%2C0%2C0%2C9%2C.65l.11-.09%5C%22%20fill%3D%5C%22%23F9AB00%5C%22/%3E%3Cpath%20d%3D%5C%22M12%2C7.1a6.93%2C6.93%2C0%2C0%2C0%2C0%2C9.79l2.36-2.36a3.59%2C3.59%2C0%2C1%2C1%2C5.08-5.08L21.81%2C7.1A6.93%2C6.93%2C0%2C0%2C0%2C12%2C7.1Z%5C%22%20fill%3D%5C%22%23F9AB00%5C%22/%3E%3Cpath%20d%3D%5C%22M21.81%2C7.1%2C19.46%2C9.46a3.59%2C3.59%2C0%2C0%2C1-5.08%2C5.08L12%2C16.9A6.93%2C6.93%2C0%2C0%2C0%2C21.81%2C7.1Z%5C%22%20fill%3D%5C%22%23E8710A%5C%22/%3E%3C/svg%3E"
-        alt="Open in Colab"
-        width="20"
-        height="20"
-        className="myst-fm-colab-icon inline-block align-text-bottom"
-      />
+      <ColabLogo />
     </a>
   );
 }
