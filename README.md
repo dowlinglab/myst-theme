@@ -17,6 +17,13 @@ https://myst-theme.netlify.app/
 
 You can also find a [storybook site for the MyST Theme components](https://jupyter-book.github.io/myst-theme/?path=/docs/components-introduction--docs) to see the style and structure of components.
 
+## The DowlingLab fork
+
+This is [`dowlinglab/myst-theme`](https://github.com/dowlinglab/myst-theme), a fork adding an "Open in
+Colab" button (branch `colab-button`, merged into `main`). See
+[the DowlingLab fork notes](./docs/developer/dowlinglab-fork.md) for what it adds and how consuming
+sites (`pyomo-doe`, `ndcbe/optimization`) package and deploy it — including a mistake worth not repeating.
+
 # Development
 
 All dependencies for `myst-theme` are included in this repository (a monorepo!).
